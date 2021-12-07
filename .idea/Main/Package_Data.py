@@ -14,7 +14,8 @@ class Package:
     def __str__(self):  # overwite print(Package) otherwise it will print object reference
         return "%s, %s, %s, %s, %s,%s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zip,
                                                   self.deadline, self.mass, self.note)
-
+    def get_address(self):
+        print(self.address)
 
 def loadPackageData(fileName, my_hash):
     with open(fileName) as ourPackages:
