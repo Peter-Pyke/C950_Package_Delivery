@@ -1,19 +1,15 @@
 import csv
 matrix = []
-for i in range(27):
-    matrix.append([0] * 27)
 
 def loadDistanceData(file_name):
     with open(file_name) as ourDistances:
         distance_data = csv.reader(ourDistances, delimiter=',')
+        next(distance_data) # skip header
         for hub in distance_data:
-            for row in range(27):
-                for column in range(27):
-                    matrix[row][column] = hub[column]
-
+                matrix.append(hub)
     return matrix
 
-def printDistanceMatrix(matrix, index_1, index_2):
+def printDistanceFromMatrix(matrix, index_1, index_2):
     print(matrix[index_1][index_2])
 
 
