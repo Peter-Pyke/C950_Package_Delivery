@@ -1,23 +1,19 @@
-from Package_Data import loadPackageData, Package
-from My_Hash_Table import getNumberOfItemsFromMyHash, ChainingHashTable
+from Package_Data import loadPackageData, Package, getNumberOfItemsFromMyHash
+from My_Hash_Table import ChainingHashTable
 from Distance_Data import loadDistanceData, printDistanceFromMatrix, distanceLookUp
 
 
 # Hash table instance
 myHash = ChainingHashTable()
 
-# Load packages to Hash Table
-loadPackageData('CSV_Files/WGUPS Package File.csv', myHash)
-# Load distance data into a list of lists
-myMatrix = loadDistanceData(('CSV_Files/WGUPS Distance Table.csv'))
-# Load addresses of all hubs into a dicationary that maps them to a numeric value from 0 to 26
+# load dictionary with package addresses mapped to numeric value
 look_up_dictionary = distanceLookUp('CSV_Files/hub_address_as_show_in_package_data.csv')
 
-""" The printDistanceFromMatrix function prints the distance between the two addresses passed to it.
-    The second parater is using the look_up_dictionary function, to take the address from our Package
-    object and turn it into a number that can be used as an index for our distance data in our matrix.
-"""
-printDistanceFromMatrix(myMatrix,  look_up_dictionary.get(myHash.search(2).address),0)
+# Load distance data into a list of lists
+distance_data = loadDistanceData(('CSV_Files/WGUPS Distance Table.csv'))
+
+# Load packages to Hash Table
+loadPackageData('CSV_Files/WGUPS Package File.csv', myHash, distance_data, look_up_dictionary)
 
 
 print("Packages from Hashtable:")
