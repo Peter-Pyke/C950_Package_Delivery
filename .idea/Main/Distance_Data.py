@@ -1,7 +1,8 @@
 import csv
-matrix = []
+
 
 def loadDistanceData(file_name):
+    matrix = []
     with open(file_name) as ourDistances:
         distance_data = csv.reader(ourDistances, delimiter=',')
         next(distance_data) # skip header
