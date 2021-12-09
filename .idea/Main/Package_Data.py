@@ -1,5 +1,6 @@
 import csv
 from Distance_Data import distanceLookUp
+from datetime import datetime
 
 
 class Package:
@@ -30,10 +31,10 @@ def loadPackageData(fileName, my_hash, distance_data, look_up_dictionary):
             pCity = package[2]
             pState = package[3]
             pZip = package[4]
-            pDeadline = package[5]
+            pDeadline = datetime.strptime(package[5], "%I:%M %p")
             pMass = package[6]
             pNote = package[7]
-            pStatus = "At hub"
+            pStatus = "AT HUB"
             pDistance = distance_data[0][look_up_dictionary.get(pAddress)]
             # package object
             p = Package(pID, pAddress, pCity, pState, pZip, pDeadline, pMass, pNote, pStatus, pDistance)

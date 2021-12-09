@@ -3,6 +3,7 @@ from My_Hash_Table import ChainingHashTable
 from Distance_Data import loadDistanceData, distanceLookUp
 from Greedy_Algorithm import greedy_algorithm
 from Trucks import Truck
+from datetime import datetime
 
 
 # Hash table instance
@@ -18,6 +19,19 @@ distance_data = loadDistanceData(('CSV_Files/WGUPS Distance Table.csv'))
 loadPackageData('CSV_Files/WGUPS Package File.csv', myHash, distance_data, look_up_dictionary)
 
 # Print data from Hash Table
-print("Packages from Hashtable:")
-for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
-    print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
+#print("Packages from Hashtable:")
+#for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
+#    print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
+
+truck_1 = Truck(0, datetime.strptime('08:00 AM', "%I:%M %p"))
+for i in range (1, 17):
+    truck_1.insert(i)
+print(truck_1.table)
+print(truck_1.current_time)
+
+my_package = myHash.search(5)
+my_package_1 = myHash.search(1)
+print("my_package", my_package.deadline )
+print(my_package_1.deadline)
+if my_package.deadline > my_package_1.deadline:
+    print('It worked!')
