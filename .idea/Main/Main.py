@@ -28,6 +28,7 @@ for i in range (1, 17):
     truck_1.insert(i)
 print(truck_1.table)
 print(truck_1.current_time)
+print(myHash.search(15).truck)
 
 my_package = myHash.search(5)
 my_package_1 = myHash.search(1)

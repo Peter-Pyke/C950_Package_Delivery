@@ -4,6 +4,7 @@ from Distance_Data import *
 
 def greedy_algorithm(my_hash, truck):
     """
+
     create whole number field for times to compare (minitues after mindnight).
     after sorting by time check delay
 
