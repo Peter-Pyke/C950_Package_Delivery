@@ -1,6 +1,6 @@
 from Package_Data import loadPackageData, Package, getNumberOfItemsFromMyHash
 from My_Hash_Table import ChainingHashTable
-from Distance_Data import loadDistanceData, printDistanceFromMatrix, distanceLookUp
+from Distance_Data import loadDistanceData, distanceLookUp
 from Greedy_Algorithm import greedy_algorithm
 from Trucks import Truck
 
@@ -16,12 +16,6 @@ distance_data = loadDistanceData(('CSV_Files/WGUPS Distance Table.csv'))
 
 # Load packages to Hash Table
 loadPackageData('CSV_Files/WGUPS Package File.csv', myHash, distance_data, look_up_dictionary)
-
-truck_1 = Truck(0,'08:00')
-
-loaded_truck = greedy_algorithm(myHash, truck_1)
-
-print(truck_1)
 
 # Print data from Hash Table
 print("Packages from Hashtable:")

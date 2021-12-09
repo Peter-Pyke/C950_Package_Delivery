@@ -10,9 +10,6 @@ def loadDistanceData(file_name):
                 matrix.append(hub)
     return matrix
 
-def printDistanceFromMatrix(matrix, index_1, index_2):
-    print(matrix[index_1][index_2])
-
 
 def distanceLookUp(file_name):
     with open(file_name) as addresses:
