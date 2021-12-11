@@ -4,7 +4,7 @@ from Distance_Data import loadDistanceData, distanceLookUp
 from Load_Trucks import load_truck_1, load_truck_2
 from Trucks import Truck
 from datetime import datetime
-from Nearest_Neighbour_Algorithm import deliver_packages
+from Nearest_Neighbor_Algorithm import deliver_packages
 
 # Hash table instance
 myHash = ChainingHashTable()
@@ -34,8 +34,8 @@ print(truck_1.table)
 print(truck_2.table)
 #for i in range(16):
 #    print(myHash.search(truck_1.table[i]).distance)
-while(len(truck_1.table) > 0):
-    deliver_packages(myHash, distance_data, look_up_dictionary, truck_1)
-print(truck_1.distance_traveled)
+while(len(truck_1.table)>0):
+    print(deliver_packages(myHash, distance_data, look_up_dictionary, truck_1))
+#(truck_1.distance_traveled)
 #print(truck_1.table)
 #print(myHash.search(13).status)

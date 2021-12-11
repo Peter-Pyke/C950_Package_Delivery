@@ -6,6 +6,14 @@ from Distance_Data import loadDistanceData, distanceLookUp
 
 
 def deliver_packages(myHash, distance_data, look_up_dictionary, Truck):
+    shortest_distance = float(myHash.search(Truck.table[0]).distance)
+    for i in range(len(Truck.table)):
+        if float(myHash.search(Truck.table[i]).distance) <= shortest_distance:
+            shortest_distance = float(myHash.search(Truck.table[i]).distance)
+            packageID = Truck.table[i]
+    Truck.table.remove(packageID)
+    return packageID, myHash.search(packageID).distance, shortest_distance
+
 
     """
     count = 0
