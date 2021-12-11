@@ -15,12 +15,14 @@ class Package:
         self.note = note
         self.status = status
         self.distance = distance
-        self.delay = False
+        self.no_delay = True
         self.truck = None
 
     def __str__(self):  # overwite print(Package) otherwise it will print object reference
         return "%s, %s, %s, %s, %s,%s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zip,
                                         self.deadline, self.mass, self.note, self.status, self.distance)
+    def update_distance(self, distance):
+        self.distance = distance
 
 
 def loadPackageData(fileName, my_hash, distance_data, look_up_dictionary):
@@ -41,7 +43,7 @@ def loadPackageData(fileName, my_hash, distance_data, look_up_dictionary):
             # package object
             p = Package(pID, pAddress, pCity, pState, pZip, pDeadline, pMass, pNote, pStatus, pDistance)
             if (pID == 6) or (pID == 9) or (pID == 25) or (pID == 28) or (pID == 32):
-                p.delay = True
+                p.no_delay = False
             if (pID == 3) or (pID == 18) or (pID == 36) or (pID == 38):
                 p.truck = 2
             if (pID ==13) or (pID == 14) or (pID == 15) or (pID == 16) or (pID == 19) or (pID == 20):

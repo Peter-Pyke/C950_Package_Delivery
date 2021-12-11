@@ -1,9 +1,10 @@
 class Truck:
-    def __init__(self, distance_traveled, current_time, initial_capacity=16):
+    def __init__(self, distance_traveled, current_time):
         self.distance_traveled = distance_traveled
         self.current_time = current_time
         self.table = []
         self.current_location = "4001 South 700 East"
+        self.not_full = True
 
     def insert(self, item):
         package_id = item
