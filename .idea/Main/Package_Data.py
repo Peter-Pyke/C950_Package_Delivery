@@ -3,6 +3,7 @@ from Distance_Data import distanceLookUp
 from datetime import datetime
 
 
+
 class Package:
     def __init__(self, ID, address, city, state, zip, deadline, mass, note, status, distance):
         self.ID = ID
@@ -17,10 +18,11 @@ class Package:
         self.distance = distance
         self.no_delay = True
         self.truck = None
+        self.time_delivered = None
 
     def __str__(self):  # overwite print(Package) otherwise it will print object reference
-        return "%s, %s, %s, %s, %s,%s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zip,
-                                        self.deadline, self.mass, self.note, self.status, self.distance)
+        return "%s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zip,
+                                        self.deadline, self.mass, self.note, self.status, self.distance, self.time_delivered)
     def update_distance(self, distance):
         self.distance = distance
 
@@ -60,3 +62,4 @@ def getNumberOfItemsFromMyHash(hashtable):
         else:
             count += 1
     return count
+
