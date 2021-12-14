@@ -20,14 +20,15 @@ distance_data = loadDistanceData(('CSV_Files/WGUPS Distance Table.csv'))
 loadPackageData('CSV_Files/WGUPS Package File.csv', myHash, distance_data, look_up_dictionary)
 
 # Truck one instance
-truck_1 = Truck(0.0, datetime.strptime('08:00 AM', "%I:%M %p"))
+truck_1 = Truck(0.0, datetime.strptime('2021-12-14 08:00 AM', "%Y-%m-%d %I:%M %p"), 1)
 # Truck two instance
-truck_2 = Truck(0.0, datetime.strptime('09:05 AM', "%I:%M %p"))
+truck_2 = Truck(0.0, datetime.strptime('2021-12-14 09:05 AM', "%Y-%m-%d %I:%M %p"), 2)
 
 # Initail loading of trucks
 load_truck_1(myHash, truck_1)
 load_truck_2(myHash, truck_2)
-
+print(truck_1.table)
+print(truck_2.table)
 # Deliver packages and reload trucks as needed
 while(len(truck_1.table)>0 or len(truck_2.table) > 0):
     deliver_packages(myHash, distance_data, look_up_dictionary, truck_1)
@@ -38,8 +39,11 @@ while(len(truck_1.table)>0 or len(truck_2.table) > 0):
         load_truck_2(myHash, truck_2)
 
 # Print data from Hash Table
-print("Packages from Hashtable:")
-for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
-    print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
-list = []
-print(order_packages_by_deadline(myHash, list))
+#print("Packages from Hashtable:")
+#for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
+#    print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
+for i in range(1, 41):
+    if myHash.search(i).deadline < myHash.search(i).time_delivered:
+        print('you fucked up', myHash.search(i))
+print(truck_1.distance_traveled)
+print(truck_2.distance_traveled)

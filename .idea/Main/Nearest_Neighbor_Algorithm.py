@@ -27,7 +27,7 @@ def deliver_packages(myHash, distance_data, look_up_dictionary, Truck):
         # Distance truck traveled to deliver the current package
         distance_to_add = float(distance_data[look_up_dictionary[Truck.current_location]][look_up_dictionary[myHash.search(packageID).address]])
 
-        # Updates truck current time base off of  miles traveled
+        # Updates truck current time based off of miles traveled
         Truck_time = Truck.current_time
         minutes_to_add = (distance_to_add*3.33)
         current_time = Truck_time + timedelta(minutes=minutes_to_add)

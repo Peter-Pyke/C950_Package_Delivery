@@ -37,7 +37,7 @@ def loadPackageData(fileName, my_hash, distance_data, look_up_dictionary):
             pCity = package[2]
             pState = package[3]
             pZip = package[4]
-            pDeadline = datetime.strptime(package[5], "%I:%M %p")
+            pDeadline = datetime.strptime(package[5], "%m/%d/%y %I:%M %p")
             pMass = package[6]
             pNote = package[7]
             pStatus = "AT HUB"
