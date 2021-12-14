@@ -1,7 +1,7 @@
 from Package_Data import loadPackageData, Package, getNumberOfItemsFromMyHash
 from My_Hash_Table import ChainingHashTable
 from Distance_Data import loadDistanceData, distanceLookUp
-from Load_Trucks import load_truck_1, load_truck_2, check_delivery_times_no_delay, check_delivery_times_delay_included
+from Load_Trucks import load_truck_1, load_truck_2, check_delivery_times_no_delay, check_delivery_times_delay_included, order_packages_by_deadline
 from Trucks import Truck
 from datetime import datetime
 from datetime import timedelta
@@ -41,3 +41,5 @@ while(len(truck_1.table)>0 or len(truck_2.table) > 0):
 print("Packages from Hashtable:")
 for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
     print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
+list = []
+print(order_packages_by_deadline(myHash, list))
