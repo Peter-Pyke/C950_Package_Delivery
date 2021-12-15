@@ -19,10 +19,11 @@ class Package:
         self.no_delay = True
         self.truck = None
         self.time_delivered = None
+        self.time_loaded_on_truck = None
 
     def __str__(self):  # overwite print(Package) otherwise it will print object reference
-        return "%s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zip,
-                                        self.deadline, self.mass, self.note, self.status, self.distance, self.time_delivered)
+        return "%s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zip,
+                                        self.deadline, self.mass, self.note, self.status, self.distance, self.time_delivered, self.time_loaded_on_truck)
     def update_distance(self, distance):
         self.distance = distance
 

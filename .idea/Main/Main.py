@@ -1,7 +1,7 @@
 from Package_Data import loadPackageData, Package, getNumberOfItemsFromMyHash
 from My_Hash_Table import ChainingHashTable
 from Distance_Data import loadDistanceData, distanceLookUp
-from Load_Trucks import load_truck_1, load_truck_2, check_delivery_times_no_delay, check_delivery_times_delay_included, order_packages_by_deadline
+from Load_Trucks import load_truck
 from Trucks import Truck
 from datetime import datetime
 from datetime import timedelta
@@ -25,8 +25,8 @@ truck_1 = Truck(0.0, datetime.strptime('2021-12-14 08:00 AM', "%Y-%m-%d %I:%M %p
 truck_2 = Truck(0.0, datetime.strptime('2021-12-14 09:05 AM', "%Y-%m-%d %I:%M %p"), 2)
 
 # Initail loading of trucks
-load_truck_1(myHash, truck_1)
-load_truck_2(myHash, truck_2)
+load_truck(myHash, truck_1)
+load_truck(myHash, truck_2)
 print(truck_1.table)
 print(truck_2.table)
 # Deliver packages and reload trucks as needed
@@ -34,16 +34,17 @@ while(len(truck_1.table)>0 or len(truck_2.table) > 0):
     deliver_packages(myHash, distance_data, look_up_dictionary, truck_1)
     deliver_packages(myHash, distance_data, look_up_dictionary, truck_2)
     if(truck_1.current_time < truck_2.current_time):
-        load_truck_1(myHash, truck_1)
+        load_truck(myHash, truck_1)
     else:
-        load_truck_2(myHash, truck_2)
-
+        load_truck(myHash, truck_2)
+    print(truck_1.table)
 # Print data from Hash Table
-#print("Packages from Hashtable:")
-#for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
-#    print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
+print("Packages from Hashtable:")
+for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
+    print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
 for i in range(1, 41):
     if myHash.search(i).deadline < myHash.search(i).time_delivered:
-        print('you fucked up', myHash.search(i))
+        print('late', myHash.search(i))
 print(truck_1.distance_traveled)
 print(truck_2.distance_traveled)
+print(myHash.search(9).time_delivered)
