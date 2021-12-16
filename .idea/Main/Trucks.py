@@ -1,3 +1,5 @@
+
+
 class Truck:
     def __init__(self, distance_traveled, current_time, truck_number):
         self.distance_traveled = distance_traveled

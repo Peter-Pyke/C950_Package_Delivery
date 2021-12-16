@@ -3,7 +3,6 @@ from Distance_Data import distanceLookUp
 from datetime import datetime
 
 
-
 class Package:
     def __init__(self, ID, address, city, state, zip, deadline, mass, note, status, distance):
         self.ID = ID
@@ -20,7 +19,7 @@ class Package:
         self.truck = None
         self.time_delivered = None
         self.time_loaded_on_truck = None
-        self.delivery_time_for_display = "NO DELIVERY TIME"
+        self.delivery_time_for_display = " "
 
     def __str__(self):  # overwite print(Package) otherwise it will print object reference
         return "%s, %s, %s, %s, %s,%s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zip,
@@ -65,19 +64,24 @@ def getNumberOfItemsFromMyHash(hashtable):
             count += 1
     return count
 
-def display_package_data(my_hash, time):
-    time_entered = datetime.strptime('2021-12-14 ' + time, "%Y-%m-%d %I:%M %p")
-    for i in range(1, 41):
-        if my_hash.search(i).time_delivered < time_entered:
-            my_hash.search(i).status = "DELIVERED"
-            my_hash.search(i).delivery_time_for_display = my_hash.search(i).time_delivered
-        elif my_hash.search(i).time_delivered > time_entered and time_entered > my_hash.search(i).time_loaded_on_truck:
-            my_hash.search(i).status = "EN ROUTE"
-            my_hash.search(i).delivery_time_for_display = "NO DELIVERY TIME"
-        elif my_hash.search(i).time_delivered > time_entered and time_entered < my_hash.search(i).time_loaded_on_truck:
-            my_hash.search(i).status = "AT HUB"
-            my_hash.search(i).delivery_time_for_display = "NO DELIVERY TIME"
-            # Print data from Hash Table
-    print("Packages from Hashtable:")
-    for i in range (int((getNumberOfItemsFromMyHash(my_hash.table))/2)):
-        print("Package: {}".format(my_hash.search(i+1))) # 1 to 40 is sent to myHash.search()
+def display_package_data(my_hash, time, truck_1, truck_2):
+    try:
+        time_entered = datetime.strptime('2021-12-14 ' + time, "%Y-%m-%d %I:%M %p")
+
+        for i in range(1, 41):
+            if my_hash.search(i).time_delivered < time_entered:
+                my_hash.search(i).status = "DELIVERED"
+                my_hash.search(i).delivery_time_for_display = my_hash.search(i).time_delivered
+            elif my_hash.search(i).time_delivered > time_entered and time_entered > my_hash.search(i).time_loaded_on_truck:
+                my_hash.search(i).status = "EN ROUTE"
+                my_hash.search(i).delivery_time_for_display = " "
+            elif my_hash.search(i).time_delivered > time_entered and time_entered < my_hash.search(i).time_loaded_on_truck:
+                my_hash.search(i).status = "AT HUB"
+                my_hash.search(i).delivery_time_for_display = " "
+                # Print data from Hash Table
+        print("Packages from Hashtable:")
+        for i in range (int((getNumberOfItemsFromMyHash(my_hash.table))/2)):
+            print("Package: {}".format(my_hash.search(i+1))) # 1 to 40 is sent to myHash.search()
+        print("\nTotal mileage for both trucks to deliver all packages:"+ str((truck_1.distance_traveled + truck_2.distance_traveled))+" miles")
+    except:
+        print("\nThe format of the time you entered was incorrect")

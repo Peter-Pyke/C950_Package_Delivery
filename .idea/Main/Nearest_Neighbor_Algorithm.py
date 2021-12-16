@@ -4,7 +4,6 @@ from My_Hash_Table import ChainingHashTable
 from Distance_Data import loadDistanceData, distanceLookUp
 
 
-
 def deliver_packages(myHash, distance_data, look_up_dictionary, Truck):
 
     # Repeats the code below until the truck is empty
@@ -37,7 +36,7 @@ def deliver_packages(myHash, distance_data, look_up_dictionary, Truck):
         myHash.search(packageID).time_delivered = current_time
         myHash.search(packageID).status = 'DELIVERED'
 
-        # Updates the Truck location, total distance and removes delivered packages
+        # Updates the Truck location, total distance and removes delivered package
         Truck.update_distance(distance_to_add)
         Truck.update_location(myHash.search(packageID).address)
         Truck.table.remove(packageID)
