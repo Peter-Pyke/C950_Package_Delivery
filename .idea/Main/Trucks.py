@@ -20,3 +20,5 @@ class Truck:
 
     def update_distance(self, distance_to_add):
         self.distance_traveled += distance_to_add
+    def truck_miles(self):
+        return self.distance_traveled

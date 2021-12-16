@@ -1,4 +1,4 @@
-from Package_Data import loadPackageData, Package, getNumberOfItemsFromMyHash
+from Package_Data import loadPackageData, Package, getNumberOfItemsFromMyHash, display_package_data
 from My_Hash_Table import ChainingHashTable
 from Distance_Data import loadDistanceData, distanceLookUp
 from Load_Trucks import load_truck
@@ -29,7 +29,7 @@ load_truck(myHash, truck_1)
 load_truck(myHash, truck_2)
 print(truck_1.table)
 print(truck_2.table)
-# Deliver packages and reload trucks as needed
+# Deliver packages and reload whichever truck returns first
 while(len(truck_1.table)>0 or len(truck_2.table) > 0):
     deliver_packages(myHash, distance_data, look_up_dictionary, truck_1)
     deliver_packages(myHash, distance_data, look_up_dictionary, truck_2)
@@ -39,12 +39,17 @@ while(len(truck_1.table)>0 or len(truck_2.table) > 0):
         load_truck(myHash, truck_2)
     print(truck_1.table)
 # Print data from Hash Table
-print("Packages from Hashtable:")
-for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
-    print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
+#print("Packages from Hashtable:")
+#for i in range (int((getNumberOfItemsFromMyHash(myHash.table))/2)):
+#    print("Package: {}".format(myHash.search(i+1))) # 1 to 40 is sent to myHash.search()
 for i in range(1, 41):
     if myHash.search(i).deadline < myHash.search(i).time_delivered:
         print('late', myHash.search(i))
 print(truck_1.distance_traveled)
 print(truck_2.distance_traveled)
-print(myHash.search(9).time_delivered)
+
+user_input_exit = "Y"
+while(user_input_exit != "N"):
+    user_input = input("Please enter a time in the following format: 10:30 AM")
+    display_package_data(myHash, user_input)
+    user_input_exit = input("Would you like to enter another time Y/N?")
