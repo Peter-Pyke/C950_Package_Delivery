@@ -42,6 +42,11 @@ while(len(truck_1.table)>0 or len(truck_2.table) > 0):
     else:
         load_truck(myHash, truck_2)
 
+# This loop checks for any packages being delivered late
+for i in range(1, 41):
+    if myHash.search(i).deadline < myHash.search(i).time_delivered:
+        print("Package: " + str(myHash.search(i).ID) + " was late")
+
 # Variable to hold user input
 user_input_exit = "Y"
 

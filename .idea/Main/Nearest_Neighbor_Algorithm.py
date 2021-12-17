@@ -4,6 +4,7 @@ from My_Hash_Table import ChainingHashTable
 from Distance_Data import loadDistanceData, distanceLookUp
 
 
+# The deliver_packages function implements my nearest neighbor algorithm
 def deliver_packages(myHash, distance_data, look_up_dictionary, Truck):
 
     # Repeats the code below until the truck is empty

@@ -4,7 +4,7 @@ from datetime import datetime
 from Package_Data import Package
 
 
-# This checks to see if any packages with delivery times less then EOD still at hub (package can have delay).
+# This checks to see if any packages are still at the hub.
 def check_hub_for_packages(myHash):
     for i in range(1, 41):
         if myHash.search(i).status == 'AT HUB':

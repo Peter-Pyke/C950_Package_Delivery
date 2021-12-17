@@ -3,6 +3,7 @@ from Distance_Data import distanceLookUp
 from datetime import datetime
 
 
+# My Package class holds all the data associated with my packages
 class Package:
     def __init__(self, ID, address, city, state, zip, deadline, mass, note, status, distance):
         self.ID = ID
@@ -21,13 +22,12 @@ class Package:
         self.time_loaded_on_truck = None
         self.delivery_time_for_display = " "
 
-    def __str__(self):  # overwite print(Package) otherwise it will print object reference
+    # Overwites print(Package) otherwise it will print object reference
+    def __str__(self):
         return "%s, %s, %s, %s, %s,%s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zip,
                                         self.deadline, self.mass, self.note, self.status, self.delivery_time_for_display)
-    def update_distance(self, distance):
-        self.distance = distance
 
-
+# This loads the package data from the CSV file into my Hash table
 def loadPackageData(fileName, my_hash, distance_data, look_up_dictionary):
     with open(fileName) as ourPackages:
         packageData = csv.reader(ourPackages, delimiter=',')
@@ -45,16 +45,24 @@ def loadPackageData(fileName, my_hash, distance_data, look_up_dictionary):
             pDistance = distance_data[0][look_up_dictionary.get(pAddress)]
             # package object
             p = Package(pID, pAddress, pCity, pState, pZip, pDeadline, pMass, pNote, pStatus, pDistance)
+            # This statement helps track the packages that have delays
             if (pID == 6) or (pID == 9) or (pID == 25) or (pID == 28) or (pID == 32):
                 p.no_delay = False
+            # This statement helps track the packages that need to be on truck 2
             if (pID == 3) or (pID == 18) or (pID == 36) or (pID == 38):
                 p.truck = 2
+            # This statement helps insure the packages below are delivered together
             if (pID ==13) or (pID == 14) or (pID == 15) or (pID == 16) or (pID == 19) or (pID == 20):
                 p.truck = 1
-            # insert it into the hash table
+            # This statement updates the incorrect address of package 9
+            if (pID == 9):
+                p.address = "410 S State St"
+                p.zip = "84111"
+            # Inserts package object into the hash table
             my_hash.insert(pID, p)
 
-
+# This function returns the number of package objects currently in the hash table
+# This value is used as the max range for the display package function below
 def getNumberOfItemsFromMyHash(hashtable):
     count = 0
     for item in hashtable:
@@ -64,6 +72,7 @@ def getNumberOfItemsFromMyHash(hashtable):
             count += 1
     return count
 
+# This function prints the package data for all packages in the hash
 def display_package_data(my_hash, time, truck_1, truck_2):
     try:
         time_entered = datetime.strptime('2021-12-14 ' + time, "%Y-%m-%d %I:%M %p")

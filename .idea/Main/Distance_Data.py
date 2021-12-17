@@ -1,6 +1,6 @@
 import csv
 
-
+# This returns a list of lists containing all the distances between all the address as show in the distance table file
 def loadDistanceData(file_name):
     matrix = []
     with open(file_name) as ourDistances:
@@ -10,7 +10,8 @@ def loadDistanceData(file_name):
                 matrix.append(hub)
     return matrix
 
-
+# This maps all the addresses to a numeric value, which will be used as an index when retrieving the distance data
+# from the matrix above
 def distanceLookUp(file_name):
     with open(file_name) as addresses:
         address_data = csv.reader(addresses, delimiter=',')
