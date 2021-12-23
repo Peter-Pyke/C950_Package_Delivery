@@ -5,12 +5,15 @@ from Package_Data import Package
 
 
 # This checks to see if any packages are still at the hub.
+# Space/Time complexity O(n)
 def check_hub_for_packages(myHash):
     for i in range(1, 41):
         if myHash.search(i).status == 'AT HUB':
             return True
     return False
+
 # Loads the trucks with the packages in a predefined order
+# Space/Time complexity O(n^2)
 def load_truck(my_hash, truck):
     # List holding package IDs in a predefined order
     packages_to_load = [15,	1,	13,	19,	14,	16,	20,	29,	30,	31,	34,	37,	40,	2,	4,	21,	18,	36,	38,	3,	6, 28,	32,	25,

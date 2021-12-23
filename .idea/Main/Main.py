@@ -7,8 +7,11 @@ from datetime import datetime
 from datetime import timedelta
 from Nearest_Neighbor_Algorithm import deliver_packages
 """
-Student Name: Peter Chouinard
-Student ID: #001162524
+Student Name:
+Peter Chouinard
+
+Student ID:
+001162524
 """
 
 
@@ -32,13 +35,15 @@ truck_2 = Truck(0.0, datetime.strptime('2021-12-14 09:05 AM', "%Y-%m-%d %I:%M %p
 # Initail loading of trucks
 load_truck(myHash, truck_1)
 load_truck(myHash, truck_2)
-
+print("Packages on Truck_1:" + str(truck_1.table))
+print("Packages on Truck_2:" + str(truck_2.table))
 # Deliver packages and reload whichever truck returns first (in our case it will be truck_1)
 while(len(truck_1.table)>0 or len(truck_2.table) > 0):
     deliver_packages(myHash, distance_data, look_up_dictionary, truck_1)
     deliver_packages(myHash, distance_data, look_up_dictionary, truck_2)
     if(truck_1.current_time < truck_2.current_time):
         load_truck(myHash, truck_1)
+        print("Packages on Truck_1:" + str(truck_1.table))
     else:
         load_truck(myHash, truck_2)
 
