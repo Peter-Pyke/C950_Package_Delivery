@@ -6,13 +6,7 @@ from Trucks import Truck
 from datetime import datetime
 from datetime import timedelta
 from Nearest_Neighbor_Algorithm import deliver_packages
-"""
-Student Name:
-Peter Chouinard
 
-Student ID:
-001162524
-"""
 
 
 # Hash table instance
